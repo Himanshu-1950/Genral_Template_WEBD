@@ -1,0 +1,3778 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEMPLATE--ONLY</title>
+    <link rel="icon" href="" type="">
+    <meta name="description" content="">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <style>
+        /* CSS Variables for Theme */
+        :root {
+            --bg-primary: #0a0f1c;
+            --bg-secondary: #1a1f35;
+            --bg-tertiary: #0f172a;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #8b5cf6;
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --navbar-bg: rgba(12, 17, 32, 0.98);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #e2e8f0;
+            --bg-tertiary: #cbd5e1;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --accent-primary: #0284c7;
+            --accent-secondary: #7c3aed;
+            --glass-bg: rgba(0, 0, 0, 0.02);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --navbar-bg: rgba(248, 250, 252, 0.98);
+        }
+
+        /* RESPONSIVENESS FIX START - Strict Horizontal Overflow Control */
+        html {
+            overflow-x: hidden !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            width: 100% !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        /* RESPONSIVENESS FIX END */
+
+        /* Prevent scroll when mobile menu is open */
+        body.no-scroll {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(12, 17, 32, 0.98) 0%, rgba(30, 41, 59, 0.95) 50%, rgba(15, 23, 42, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+            z-index: 9999997 !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100% !important;
+            max-width: 100vw !important;
+            overflow: visible !important;
+        }
+
+        .navbar::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 212, 255, 0.4) 20%, rgba(139, 92, 246, 0.4) 50%, rgba(244, 114, 182, 0.4) 80%, transparent 100%);
+        }
+
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            flex-shrink: 0;
+            min-width: 0;
+        }
+
+        .navbar-logo {
+            height: 40px;
+            width: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .navbar-text {
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .navbar-title {
+            font-size: clamp(0.9rem, 2vw, 1.25rem);
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, #00d4ff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .navbar-subtitle {
+            font-size: clamp(0.65rem, 1vw, 0.8rem);
+            color: #00d4ff;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+            white-space: nowrap;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00d4ff, #8b5cf6);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-link:hover::before {
+            width: 80%;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.4);
+            color: #00d4ff;
+            transform: scale(1.05);
+        }
+
+        .theme-toggle i {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover i {
+            transform: rotate(180deg);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        /* ========== MOBILE MENU - REBUILT FROM SCRATCH ========== */
+        
+        /* Hamburger Button */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 9999999 !important;
+            position: relative;
+        }
+
+        .mobile-toggle span {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff, #8b5cf6);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        /* Hamburger Animation - Transform to X */
+        .mobile-toggle.active span:nth-child(1) {
+            transform: translateY(10.5px) rotate(45deg);
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: translateY(-10.5px) rotate(-45deg);
+        }
+
+        /* Mobile Menu Dropdown */
+        .mobile-menu {
+            display: block;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            background: linear-gradient(135deg, rgba(10, 15, 26, 0.98) 0%, rgba(26, 31, 53, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transform: translateY(-120%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999999 !important;
+            max-height: calc(100vh - 70px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            pointer-events: none;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            z-index: 999999 !important;
+            pointer-events: auto;
+        }
+
+        /* Mobile Menu Content Container */
+        .mobile-menu-content {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            gap: 0;
+        }
+
+        /* Mobile Navigation Links */
+        .mobile-nav-link {
+            display: block;
+            padding: 1rem 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .mobile-nav-link:hover {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.08);
+            padding-left: 1.5rem;
+        }
+
+        .mobile-nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: linear-gradient(180deg, #00d4ff, #8b5cf6);
+            transition: height 0.25s ease;
+        }
+
+        .mobile-nav-link:hover::before {
+            height: 60%;
+        }
+
+        /* Mobile Theme Toggle Button */
+        .theme-toggle-mobile {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 1rem 1.25rem;
+            background: none;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            width: 100%;
+            text-align: left;
+        }
+
+        .theme-toggle-mobile:hover {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.08);
+            padding-left: 1.5rem;
+        }
+
+        .theme-toggle-mobile i {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile CTA Button */
+        .mobile-cta {
+            display: block;
+            margin: 1.5rem 1.25rem 0.5rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Mobile Menu Backdrop */
+        .mobile-menu-backdrop {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999998 !important;
+            pointer-events: none;
+        }
+
+        .mobile-menu-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* ========== END MOBILE MENU ========== */
+
+        @media (max-width: 768px) {
+            /* RESPONSIVENESS FIX - Mobile Media Query Start */
+            .navbar-nav {
+                display: none !important;
+            }
+            
+            .mobile-toggle {
+                display: flex !important;
+            }
+            
+            .navbar-title {
+                font-size: 1.1rem;
+            }
+            
+            .navbar-subtitle {
+                font-size: 0.7rem;
+            }
+            
+            /* Comprehensive Mobile Improvements */
+            .hero-section {
+                padding: 1rem;
+                min-height: auto;
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow: hidden !important;
+                padding-top: 70px;
+            }
+            
+            .hero-content {
+                padding: 1rem 0;
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow: hidden !important;
+            }
+            
+            .hero-logo-section {
+                flex-direction: column;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .hero-title-wrapper {
+                text-align: center;
+            }
+            
+            .title-line-1 {
+                font-size: 1.75rem;
+            }
+            
+            .title-line-2 {
+                font-size: 3.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.75rem;
+            }
+            
+            .hero-text {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            
+            .theme-badge {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin: 2rem 0;
+                max-width: 100%;
+            }
+            
+            .stat-card {
+                padding: 1.25rem 0.75rem;
+                font-size: 0.95rem;
+            }
+            
+            .stat-card .stat-number {
+                font-size: 1.75rem;
+            }
+            
+            .stat-card .stat-label {
+                font-size: 0.8rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+                align-items: stretch;
+            }
+            
+            .cta-primary, .cta-secondary {
+                width: 100%;
+                justify-content: center;
+                padding: 0.875rem 1rem;
+                font-size: 0.9rem;
+                min-height: 44px;
+            }
+            
+            .cta-primary {
+                background: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+            }
+            
+            .cta-secondary {
+                border-width: 1.5px;
+            }
+            
+            /* Timeline Mobile Fixes */
+            .timeline-container {
+                padding: 1rem 0;
+            }
+            
+            .timeline-step {
+                margin-bottom: 2rem;
+            }
+            
+            .timeline-content {
+                padding: 1.5rem;
+            }
+            
+            /* Prize Cards Mobile */
+            .prize-card {
+                padding: 1.5rem;
+            }
+            
+            .prize-amount {
+                font-size: 2rem !important;
+                word-break: keep-all;
+            }
+            
+            /* Section Padding Reduction */
+            .py-20 {
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
+            }
+            
+            .theme-section {
+                padding: 3rem 0;
+            }
+            
+            .prizes-section {
+                padding: 3rem 0;
+            }
+            
+            /* Fix text wrapping */
+            .hero-tagline {
+                line-height: 1.1 !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .hero-text {
+                line-height: 1.4 !important;
+                margin-bottom: 2rem !important;
+            }
+        }
+        
+        /* Sticky Register Button for Mobile */
+        .sticky-register-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .sticky-register-btn:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 212, 255, 0.5);
+        }
+        
+        .sticky-register-btn.show {
+            display: flex;
+        }
+        
+        @media (max-width: 768px) {
+            .sticky-register-btn {
+                display: flex;
+            }
+        }
+
+        /* Body Adjustment */
+        body {
+            padding-top: 70px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Particle Background */
+        .particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0 !important;
+            pointer-events: none;
+            overflow: hidden !important;
+        }
+        
+        /* Enhanced Timeline Styles */
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 212, 255, 0.3) 10%, rgba(139, 92, 246, 0.5) 50%, rgba(0, 212, 255, 0.3) 90%, transparent 100%);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .timeline-item {
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            animation: timelinePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes timelinePulse {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.1);
+                box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+            }
+        }
+        
+        .timeline-item:nth-child(2)::before {
+            animation-delay: 0.2s;
+        }
+        
+        .timeline-item:nth-child(3)::before {
+            animation-delay: 0.4s;
+        }
+        
+        .timeline-item:nth-child(4)::before {
+            animation-delay: 0.6s;
+        }
+        
+        .timeline-item:nth-child(5)::before {
+            animation-delay: 0.8s;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-line {
+                display: none;
+            }
+            
+            .timeline-item::before {
+                display: none;
+            }
+        }
+        
+        /* Mobile Timeline Fix - Ensures proper visibility and alignment */
+        @media (max-width: 768px) {
+            .timeline-step {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                position: relative;
+                padding-left: 0 !important;
+                margin-left: 0 !important;
+            }
+
+            .timeline-number {
+                left: 0 !important;
+                transform: translateX(0) !important;
+                margin-bottom: 1rem;
+                position: relative !important;
+                display: inline-flex !important;
+                justify-content: center;
+                align-items: center;
+                box-shadow: none !important; /* prevents clipping */
+            }
+
+            .timeline-vertical-line {
+                display: none !important;
+            }
+
+            .timeline-content {
+                margin: 0 !important;
+                width: 100% !important;
+            }
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .shadow-glow {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+        
+        .shadow-glow:hover {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+        }
+        
+        .shadow-glow-purple {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+        
+        .shadow-glow-purple:hover {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+        }
+        
+        .gradient-hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #581c87 100%);
+        }
+        
+        .glassmorphic {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* DUPLICATE MOBILE MENU REMOVED - Using vertical slide only (line 265-293) */
+        /* Removed conflicting translateX(-100%) rules */
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Additional mobile optimizations and accessibility */
+        .faq-item button:focus {
+            outline: 2px solid #00d4ff;
+            outline-offset: 2px;
+        }
+        
+        .faq-content {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .faq-content.hidden {
+            max-height: 0;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        .faq-content:not(.hidden) {
+            max-height: 200px;
+            opacity: 1;
+        }
+        
+        /* Improved CTA button responsiveness */
+        .cta-primary, .cta-secondary {
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Better color contrast for accessibility */
+        .text-cyan-custom {
+            color: #00d4ff;
+        }
+        
+        /* Defer heavy animations on mobile */
+        @media (max-width: 768px) {
+            .floating-element {
+                animation: none;
+            }
+            
+            .timeline-number {
+                animation: none;
+                box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            }
+        }
+        
+        /* Semantic heading structure */
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.5rem; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.25rem; }
+        }
+        
+        /* Gradient text animation */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-text-animated {
+            background: linear-gradient(-45deg, #00d4ff, #8b5cf6, #f472b6, #00d4ff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        /* Enhanced card hover effects */
+        .enhanced-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        
+        .enhanced-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+        
+        /* Modern Card Styles - Inspired by Coding Club */
+        .modern-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff, #8b5cf6, #f472b6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modern-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.15);
+        }
+        
+        .modern-card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-header-icon {
+            position: relative;
+            margin: 0 auto 2rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .icon-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(139, 92, 246, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: #00d4ff;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .icon-container.purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(244, 114, 182, 0.1));
+            color: #8b5cf6;
+        }
+        
+        .icon-container.green {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+            color: #22c55e;
+        }
+        
+        .modern-card:hover .icon-container {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(139, 92, 246, 0.2));
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .modern-card:hover .icon-container.purple {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(244, 114, 182, 0.2));
+        }
+        
+        .modern-card:hover .icon-container.green {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(59, 130, 246, 0.2));
+        }
+        
+        .glow-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .glow-effect.purple {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent);
+        }
+        
+        .glow-effect.green {
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.15), transparent);
+        }
+        
+        .modern-card:hover .glow-effect {
+            opacity: 1;
+        }
+        
+        .card-bottom-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
+        }
+        
+        /* Modern Timeline Styles */
+        .modern-timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-wrapper {
+            position: relative;
+        }
+        
+        .timeline-vertical-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.5) 20%, rgba(139, 92, 246, 0.5) 50%, rgba(244, 114, 182, 0.5) 80%, transparent 100%);
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 640px) {
+            .timeline-vertical-line {
+                display: none;
+            }
+        }
+        
+        .timeline-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        /* FINAL MOBILE FIX START - Timeline Mobile */
+        @media (max-width: 768px) {
+            .timeline-step {
+                flex-direction: column !important;
+                margin-bottom: 2rem;
+                align-items: stretch;
+                padding: 0;
+                width: 100%;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+        
+        .timeline-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        @media (max-width: 640px) {
+            .timeline-step:nth-child(even) {
+                flex-direction: column !important;
+            }
+        }
+        
+        .timeline-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            animation: timelinePulse 3s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        /* FINAL MOBILE FIX START - Timeline Number */
+        @media (max-width: 768px) {
+            .timeline-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+                position: relative;
+                left: 0;
+                margin-left: 0;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+        
+        .timeline-step:nth-child(2) .timeline-number {
+            animation-delay: 0.6s;
+        }
+        
+        .timeline-step:nth-child(3) .timeline-number {
+            animation-delay: 1.2s;
+        }
+        
+        .timeline-step:nth-child(4) .timeline-number {
+            animation-delay: 1.8s;
+        }
+        
+        .timeline-step:nth-child(5) .timeline-number {
+            animation-delay: 2.4s;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 0 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 640px) {
+            .timeline-content {
+                padding: 1.25rem;
+                margin: 0;
+                width: 100%;
+            }
+        }
+        
+        .timeline-content:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 212, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.1);
+        }
+        
+        .timeline-phase {
+            font-size: 0.9rem;
+            color: #00d4ff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-date {
+            font-size: 1rem;
+            color: #8b5cf6;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .timeline-description {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-icon {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4ff;
+            font-size: 1.2rem;
+        }
+        
+        /* Comprehensive Footer Styles */
+        .comprehensive-footer {
+            background: linear-gradient(135deg, #0a0f1a 0%, #1a1f2e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* FINAL MOBILE FIX START - Footer */
+        .footer-main {
+            padding: clamp(2rem, 5vw, 4rem) 0 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .footer-main {
+                padding: 2rem 1rem 1.5rem;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+        
+        .footer-brand .gradient-text-animated {
+            background: linear-gradient(-45deg, #00d4ff, #8b5cf6, #f472b6, #00d4ff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        /* FINAL MOBILE FIX START - Footer Stats */
+        .footer-stats {
+            display: flex;
+            gap: clamp(1rem, 3vw, 2rem);
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .footer-stats {
+                justify-content: flex-start;
+                gap: 1.5rem;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+
+        @media (max-width: 640px) {
+            .footer-stats {
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-label {
+            display: block;
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+        
+        /* FINAL MOBILE FIX START - Footer Sections */
+        .footer-section {
+            margin-bottom: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .footer-section {
+                margin-bottom: 1.5rem;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+        
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(45deg, #00d4ff, #8b5cf6);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .footer-link {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            padding: 0.25rem 0;
+        }
+        
+        .footer-link:hover {
+            color: #00d4ff;
+            padding-left: 0.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .social-link:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+            transform: translateY(-2px);
+        }
+        
+        .footer-partners {
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .partner-logo {
+            display: flex;
+            align-items: center;
+            color: #64748b;
+            transition: color 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            color: #00d4ff;
+        }
+        
+        .footer-bottom {
+            padding: 1.5rem 0;
+        }
+        
+        .footer-glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.03), transparent);
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-vertical-line {
+                left: 30px;
+            }
+            
+            .timeline-step {
+                flex-direction: row !important;
+                padding-left: 80px;
+            }
+            
+            .timeline-number {
+                position: absolute;
+                left: 0;
+            }
+            
+            .timeline-content {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .footer-stats {
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .hero-logo-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .main-prizes {
+                grid-template-columns: 1fr;
+            }
+            
+            .special-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Mobile typography optimizations */
+            .title-line-1 {
+                font-size: 2rem !important;
+            }
+            
+            .title-line-2 {
+                font-size: 3.5rem !important;
+            }
+            
+            .hero-tagline {
+                font-size: 1.75rem !important;
+            }
+            
+            .hero-text {
+                font-size: 1rem !important;
+            }
+            
+            .theme-badge {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            /* Reduce glow effects on mobile */
+            .modern-card:hover {
+                box-shadow: 0 10px 20px rgba(0, 212, 255, 0.1);
+            }
+            
+            .navbar-nav {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: flex;
+            }
+            
+            .navbar-title {
+                font-size: 1.1rem;
+            }
+            
+            .navbar-subtitle {
+                font-size: 0.7rem;
+            }
+        }
+        
+        /* Enhanced Glassmorphic Design */
+        .glassmorphic {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+        
+        /* Theme Icons Enhancement */
+        .theme-icon {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        }
+        
+        .icon-container {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(139, 92, 246, 0.1));
+            color: var(--accent-primary);
+        }
+        
+        [data-theme="light"] .icon-container {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(124, 58, 237, 0.1));
+        }
+        /* FINAL MOBILE FIX START - Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden !important;
+            padding: clamp(1.5rem, 5vw, 2rem) 1rem;
+            padding-top: 70px;
+            z-index: 1 !important;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: auto;
+                padding-bottom: 2rem;
+                padding-top: 70px;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+        
+        /* Theme Badge */
+        /* FINAL MOBILE FIX START - Theme Badge Responsive */
+        .theme-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50px;
+            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 480px) {
+            .theme-badge {
+                margin: 1rem 0;
+                padding: 0.5rem 1rem;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+        
+        .theme-badge i {
+            color: #00d4ff;
+            font-size: 1rem;
+        }
+        
+        .theme-badge span {
+            color: #00d4ff;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .theme-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        /* Improved navbar with scroll shadow */
+        .navbar.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(12, 17, 32, 0.99) 0%, rgba(30, 41, 59, 0.98) 50%, rgba(15, 23, 42, 0.99) 100%);
+        }
+        
+        /* FINAL MOBILE FIX START - Section Spacing */
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 0;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+        
+        .event-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .badge-text {
+            color: #00d4ff;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .badge-glow {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        /* FINAL MOBILE FIX START - Hero Floating Elements */
+        .hero-logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .hero-logo-section {
+                margin-bottom: 1.5rem;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+        
+        .hero-logo {
+            width: clamp(80px, 20vw, 120px);
+            height: clamp(80px, 20vw, 120px);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        
+        .hero-title-wrapper {
+            text-align: left;
+        }
+        
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 900;
+            line-height: 0.8;
+            margin: 0;
+        }
+        
+        .title-line-1 {
+            display: block;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            color: white;
+            letter-spacing: 0.1em;
+        }
+        
+        .title-line-2 {
+            display: block;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 900;
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        .hero-tagline {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-text {
+            font-size: clamp(0.95rem, 2vw, 1.2rem);
+            color: #94a3b8;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: clamp(1rem, 3vw, 2rem);
+            margin: 3rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 640px) {
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 212, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00d4ff;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cta-primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: #00d4ff;
+            padding: 1rem 2rem;
+            border: 2px solid #00d4ff;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        .hero-floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1), transparent);
+            animation: floatAround 20s linear infinite;
+        }
+        
+        .element-1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .element-2 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -7s;
+        }
+        
+        .element-3 {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -14s;
+        }
+        
+        @keyframes floatAround {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(20px); }
+            50% { transform: translateY(0px) translateX(40px); }
+            75% { transform: translateY(20px) translateX(20px); }
+        }
+        
+        /* Theme Section Styles */
+        .theme-section {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.01);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .theme-container {
+            position: relative;
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            margin: 2rem 0;
+        }
+        
+        .theme-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(139, 92, 246, 0.1));
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .theme-decoration.left {
+            top: -20px;
+            left: -20px;
+            animation-delay: 0s;
+        }
+        
+        .theme-decoration.right {
+            bottom: -20px;
+            right: -20px;
+            animation-delay: 2s;
+        }
+        
+        .theme-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        .theme-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .theme-description {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .theme-points {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .point-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #00d4ff;
+            font-weight: 500;
+        }
+        
+        .point-item i {
+            font-size: 1.2rem;
+        }
+        
+        /* Enhanced Prizes Section */
+        .prizes-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1a1f2e 100%);
+            position: relative;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-text {
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+        
+        .main-prizes {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 640px) {
+            .main-prizes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .main-prizes {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .prize-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        /* FINAL MOBILE FIX START - Prize Cards Mobile */
+        @media (max-width: 768px) {
+            .prize-card {
+                padding: 1.25rem;
+                width: 100%;
+                overflow: hidden;
+                box-sizing: border-box;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+        
+        .prize-card.winner {
+            border-color: rgba(255, 215, 0, 0.3);
+            background: rgba(255, 215, 0, 0.02);
+        }
+        
+        .prize-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+        
+        .prize-crown {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+        
+        .prize-icon {
+            font-size: 2rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+        
+        .prize-rank {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        
+        .prize-amount {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .prize-card.winner .prize-amount {
+            color: #ffd700;
+        }
+        
+        .prize-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .prize-description {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        
+        .prize-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .prize-card.winner:hover .prize-glow {
+            opacity: 1;
+        }
+        
+        .special-prizes {
+            text-align: center;
+        }
+        
+        .special-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .special-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .special-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .special-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .special-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .special-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+        
+        .special-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .special-icon.innovation {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+            color: #22c55e;
+        }
+        
+        .special-icon.design {
+            background: linear-gradient(135deg, rgba(244, 114, 182, 0.1), rgba(139, 92, 246, 0.1));
+            color: #f472b6;
+        }
+        
+        .special-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .special-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ===== CONSOLIDATED RESPONSIVE MEDIA QUERIES ===== */
+        /* These override and consolidate all scattered @media rules */
+
+        @media (max-width: 768px) {
+            /* Navbar */
+            .navbar-nav {
+                display: none !important;
+            }
+            
+            .mobile-toggle {
+                display: flex !important;
+            }
+            
+            .mobile-menu {
+                top: 70px !important;
+            }
+
+            /* Hero Section */
+            .hero-logo-section {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-title-wrapper {
+                text-align: center;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+                align-items: stretch;
+            }
+            
+            .cta-primary, .cta-secondary {
+                width: 100%;
+                justify-content: center;
+                min-height: 44px;
+            }
+
+            /* Timeline */
+            .timeline-vertical-line {
+                left: 30px;
+            }
+            
+            .timeline-step {
+                padding-left: 80px;
+            }
+            
+            .timeline-number {
+                position: absolute;
+                left: 0;
+            }
+            
+            .timeline-content {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            /* Footer */
+            .footer-stats {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            /* Navbar */
+            .navbar-container {
+                padding: 0.75rem 1rem;
+            }
+
+            /* Timeline */
+            .timeline-container {
+                padding: 1rem 0;
+            }
+            
+            .timeline-step {
+                padding-left: 0;
+                margin-bottom: 2.5rem;
+            }
+            
+            .timeline-number {
+                position: relative;
+                margin-bottom: 1rem;
+            }
+
+            /* Stats */
+            .hero-stats {
+                gap: 0.75rem;
+            }
+            
+            .stat-card {
+                padding: 1rem;
+            }
+
+            /* Prizes */
+            .prize-card {
+                padding: 1.25rem;
+            }
+            
+            .prize-amount {
+                font-size: 2rem;
+            }
+
+            /* Footer */
+            .footer-main {
+                padding: 2rem 0 1rem;
+            }
+        }
+
+        /* FINAL MOBILE FIX START - Extra Small Screens (320px-480px) */
+        @media (max-width: 480px) {
+            /* Extra small screens */
+            .navbar-title {
+                font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            }
+            
+            .navbar-logo {
+                height: 35px;
+                width: 35px;
+            }
+
+            /* Hero section - minimal spacing */
+            .hero-section {
+                padding: 1rem;
+                padding-top: 75px;
+            }
+
+            /* Hero content cleanup */
+            .hero-content {
+                width: 100%;
+                padding: 0;
+            }
+
+            /* Hero logo very small */
+            .hero-logo {
+                width: clamp(70px, 15vw, 100px);
+                height: clamp(70px, 15vw, 100px);
+            }
+
+            /* Text compaction */
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .stat-label {
+                font-size: 0.7rem;
+            }
+
+            /* Prize card minimal padding */
+            .prize-card {
+                padding: 1rem;
+                margin: 0;
+            }
+
+            /* Timeline spacing */
+            .timeline-container {
+                padding: 0.5rem 0;
+            }
+
+            .timeline-step {
+                margin-bottom: 1.5rem;
+            }
+
+            /* Footer compact mode */
+            .footer-main {
+                padding: 1.5rem 1rem;
+            }
+
+            .footer-brand {
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-title {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .footer-links {
+                gap: 0.5rem;
+            }
+
+            /* Social links responsive */
+            .social-links {
+                gap: 0.75rem;
+            }
+
+            .social-link {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+        }
+        /* FINAL MOBILE FIX END */
+
+        /* Reduce animations on mobile for better performance */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+            .navbar,
+            .hero-section,
+            .timeline-step,
+            .prize-card,
+            .special-card {
+                animation: none !important;
+            }
+        }
+
+        /* ========== MOBILE MENU Z-INDEX FIXES ========== */
+        /* Ensure all sections stay behind mobile menu */
+        section {
+            position: relative;
+            z-index: 1 !important;
+        }
+        
+        .hero-floating-elements {
+            z-index: 0 !important;
+        }
+        
+        .timeline-container,
+        .timeline-line,
+        .timeline-wrapper {
+            position: relative;
+            z-index: 0 !important;
+        }
+        
+        .theme-section,
+        .prizes-section,
+        .comprehensive-footer {
+            position: relative;
+            z-index: 1 !important;
+        }
+        /* ========== END MOBILE MENU Z-INDEX FIXES ========== */
+
+        /* Problem Statement Modal */
+        .ps-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 99999999 !important;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+        }
+        
+        .ps-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ps-modal-content {
+            background: linear-gradient(135deg, rgba(10, 15, 26, 0.98) 0%, rgba(26, 31, 53, 0.98) 100%);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+            position: relative;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+        
+        .ps-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .ps-modal-close:hover {
+            background: rgba(255, 0, 0, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .ps-modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            padding-right: 2.5rem;
+            line-height: 1.3;
+        }
+        
+        .ps-modal-section {
+            margin-bottom: 1rem;
+        }
+        
+        .ps-modal-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ps-modal-section p,
+        .ps-modal-section ul {
+            color: #94a3b8;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        
+        .ps-modal-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .ps-modal-section ul li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ps-modal-section ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+        }
+
+        /* RESPONSIVENESS FIX START - Critical Mobile Constraints */
+        /* Prevent any horizontal overflow in all sections */
+        @media (max-width: 768px) {
+            section,
+            .max-w-6xl,
+            .max-w-7xl,
+            .container {
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+                box-sizing: border-box !important;
+            }
+
+            /* Ensure particle container doesn't overflow */
+            #particles-js,
+            .particle-container {
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow: hidden !important;
+            }
+
+            /* Ensure timeline doesn't break layout */
+            .timeline-container,
+            .modern-timeline-container {
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+
+            /* Prize section constraints */
+            .main-prizes,
+            .special-grid,
+            .special-prizes {
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+
+            /* FAQ section constraints */
+            .faq-container {
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+
+            /* Footer constraints */
+            footer {
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+
+            /* Ensure no floating elements exceed viewport */
+            .floating-element,
+            .hero-floating-elements {
+                max-width: 100vw !important;
+                overflow: hidden !important;
+            }
+        }
+        /* RESPONSIVENESS FIX END */
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Particle Background -->
+    <div id="particles-js" class="particle-container"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <img src="" alt="TG" class="navbar-logo">
+                <div class="navbar-text">
+                    <div class="navbar-title">T--G</div>
+                    <div class="navbar-subtitle">Template General</div>
+                </div>
+            </div>
+                
+            <!-- Desktop Navigation -->
+            <div class="navbar-nav">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#problems" class="nav-link">Problem Statements</a>
+                <a href="#timeline" class="nav-link">Timeline</a>
+                <a href="#prizes" class="nav-link">Prizes</a>
+                <a href="#faqs" class="nav-link">FAQs</a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                </button>
+                <a href="" class="nav-cta">
+                    Register Now
+                </a>
+            </div>
+                
+            <!-- Mobile Menu Button -->
+            <button class="mobile-toggle" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-content">
+                <a href="#hero" class="mobile-nav-link">Home</a>
+                <a href="#about" class="mobile-nav-link">About</a>
+                <a href="#problems" class="mobile-nav-link">Problem Statements</a>
+                <a href="#timeline" class="mobile-nav-link">Timeline</a>
+                <a href="#prizes" class="mobile-nav-link">Prizes</a>
+                <a href="#faqs" class="mobile-nav-link">FAQs</a>
+                <button class="mobile-nav-link theme-toggle-mobile" onclick="document.getElementById('themeToggle').click()">
+                    <i class="fas fa-sun" id="mobileThemeIcon"></i> Theme
+                </button>
+                <a href="" class="mobile-cta">
+                    Register Now
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section" style="background: linear-gradient(135deg, #0a0f1c 0%, #1a1f35 50%, #0f172a 100%);">
+        <div class="hero-content">
+            <!-- Event Badge -->
+            <div class="event-badge" data-aos="fade-down">
+                <span class="badge-text">This is web you can Enter the text </span>
+                <div class="badge-glow"></div>
+            </div>
+            
+            <!-- Main Hero Content -->
+            <div class="hero-main" data-aos="fade-up">
+                <div class="hero-logo-section">
+                    <img src="" alt="" class="hero-logo">
+                    <div class="hero-title-wrapper">
+                        <h1 class="hero-title">
+                            <span class="title-line-1">T--G</span>
+                            <span class="title-line-2 gradient-text-animated">TG</span>
+                        </h1>
+                        <p class="hero-subtitle">GENRAL TEMPLATE</p>
+                    </div>
+                </div>
+                
+                <!-- Theme Badge -->
+                <div class="theme-badge" data-aos="fade-up" data-aos-delay="50">
+                    <i class="fas fa-cogs"></i>
+                    <span>Automation & Optimization</span>
+                </div>
+                
+                <div class="hero-description">
+                    <h2 class="hero-tagline">
+                        <span class="gradient-text-animated">Innovate. Automate. Optimize.</span>
+                    </h2>
+                    <p class="hero-text">
+                        <strong>Innovate. Automate. Optimize.</strong><br>
+                        A national-level hackathon focused on building intelligent solutions that streamline processes, enhance efficiency, and solve real-world problems through technology.
+                    </p>
+                </div>
+                
+                <!-- Hero Stats -->
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-card">
+                        <div class="stat-number">₹1,000</div>
+                        <div class="stat-label">Pool</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Hours</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3-5</div>
+                        <div class="stat-label">Size</div>
+                    </div>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
+                    <a href="" class="cta-primary">
+                        <span class="cta-text">Register Now</span>
+                        <i class="fas fa-arrow-right cta-icon"></i>
+                    </a>
+                    <a href="#about" class="cta-secondary">
+                        <span class="cta-text">Learn More</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="hero-floating-elements">
+                <div class="floating-element element-1"></div>
+                <div class="floating-element element-2"></div>
+                <div class="floating-element element-3"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-space font-bold text-white mb-6">
+                    About <span class="text-cyan-custom">T--G</span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-4xl mx-auto mb-4">
+                    🚀 <strong>Innovate. Automate. Optimize.</strong>
+                </p>
+                <p class="text-lg text-gray-300 max-w-4xl mx-auto mb-4">
+                    Welcome to the 2026 edition of the official hackathon by Coding Club PRPCEM! Collaborate, innovate, and build impactful technology solutions while showcasing your skills, creativity, and problem-solving abilities in a high-energy competitive environment.
+                </p>
+                <div class="bg-gray-700 bg-opacity-50 rounded-lg p-6 max-w-4xl mx-auto mb-6 text-left">
+                    <p class="text-gray-100 mb-3"><strong>🏆 Our Event Legacy:</strong></p>
+                    <ul class="text-gray-300 space-y-2 ml-4">
+                        <li>🔥 Previous editions witnessed strong national participation and competitive innovation</li>
+                        <li>🏫 Hosted by an institution recognized for excellence in technical education</li>
+                        <li>🎯 Fully student-driven event showcasing leadership, teamwork, and creativity</li>
+                        <li>📍 Conducted at a large, well-equipped auditorium with a vibrant on-site experience</li>
+                        <li>⭐ Backed by a campus known for quality standards and academic credibility</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="modern-card glassmorphic rounded-2xl p-6 text-left" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-space font-semibold mb-4 text-cyan-custom">👥 Eligibility & Participation</h3>
+                    <ul class="text-gray-300 space-y-2 text-lg">
+                        <li>🌐 Open to all tech enthusiasts and innovators</li>
+                        <li>🚀 All skill levels welcome, including beginners</li>
+                        <li>💡 Idea-driven participation encouraged</li>
+                        <li>🤝 Learn, collaborate, and grow with like-minded creators</li>
+                        <li>🏆 Showcase your skills in a competitive, high-energy environment</li>
+                        <li><strong>Age group: 16–65 years</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="modern-card glassmorphic rounded-2xl p-6 text-left" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-space font-semibold mb-4 text-cyan-custom">📍 Finale Details</h3>
+                    <ul class="text-gray-300 space-y-2 text-lg">
+                        <li>📅 <strong>Date:</strong> 19 January 2026</li>
+                        <li>📍 <strong>Venue:</strong> Swami Vivekananda Auditorium, PRPCEM, Amravati</li>
+                        <li>⏱️ <strong>Duration:</strong> Full-day event</li>
+                        <li>🍱 Meals Provided • 📶 High-Speed Internet • 🔋 Power Backup • 🛏️ Rest Areas</li>
+                        <li>🎯 <strong>Top 50 Teams</strong> advance to the final round</li>
+                        <li>🎁 Exciting prizes and certificates for winners</li>
+                        <li>💡 Networking opportunities with industry experts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Problem Statements Section -->
+    <section id="problems" class="py-20 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-space font-bold text-white mb-6">
+                    Problem <span class="text-cyan-custom">Statements</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Pick a challenge that sparks your curiosity and create impactful, innovative solutions!
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Problem Statement 1 -->
+                <div class="modern-card glassmorphic rounded-2xl p-8 text-left cursor-pointer hover:scale-105 transition-all" data-aos="fade-up" data-aos-delay="100" onclick="showProblemDetails(1)">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="text-4xl">🎮</div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-space font-bold text-white mb-3">
+                                Gamified OBE Learning System                            
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Transform Outcome-Based Education into an engaging, interactive learning experience through gamification, quizzes, and drag-and-drop interactions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Education Tech</span>
+                        <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">Gamification</span>
+                        <span class="px-3 py-1 bg-pink-500 bg-opacity-20 text-pink-300 rounded-full text-sm">Interactive</span>
+                    </div>
+                    <div class="mt-6 flex items-center text-cyan-400">
+                        <span class="mr-2">Click to view details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <!-- Problem Statement 2 -->
+                <div class="modern-card glassmorphic rounded-2xl p-8 text-left cursor-pointer hover:scale-105 transition-all" data-aos="fade-up" data-aos-delay="200" onclick="showProblemDetails(2)">
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="text-4xl">📝</div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-space font-bold text-white mb-3">
+                                AI-Powered Exam Paper Creator
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Automate exam paper creation with AI-powered generation that ensures balanced difficulty, avoids repetition, and exports to PDF/Word.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 bg-cyan-500 bg-opacity-20 text-cyan-300 rounded-full text-sm">Automation</span>
+                        <span class="px-3 py-1 bg-purple-500 bg-opacity-20 text-purple-300 rounded-full text-sm">AI/ML</span>
+                        <span class="px-3 py-1 bg-green-500 bg-opacity-20 text-green-300 rounded-full text-sm">Productivity</span>
+                    </div>
+                    <div class="mt-6 flex items-center text-cyan-400">
+                        <span class="mr-2">Click to view details</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-space font-bold text-white mb-6">
+                    Event <span class="text-cyan-custom">Timeline</span>
+                </h2>
+                <p class="text-xl text-gray-300">
+                    Sign Up Starts: 1 Jan 2026 | Project Proposals: 1-15 Jan | Group Setup: 16-18 Jan | Grand Showcase: 20 Jan 2026
+                </p>
+            </div>
+            
+            <div class="modern-timeline-container">
+                <div class="timeline-wrapper">
+                    <div class="timeline-vertical-line"></div>
+                    
+                    <div class="timeline-step" data-aos="fade-right" data-aos-delay="100">
+                        <div class="timeline-number">01</div>
+                        <div class="timeline-content">
+                            <div class="timeline-phase">Starts</div>
+                            <h3 class="timeline-title">Opens</h3>
+                            <p class="timeline-date">Dec 2025</p>
+                            <p class="timeline-description">
+                                🔹 Sign up on the SkillBuilder platform<br>
+                                🔹 Complete your profile with all necessary details<br>
+                                🔹 Team creation opens after individual registration<br>
+                                ⚠️ Age: 16-65 years | Registration: Free of cost
+                            </p>
+                            <div class="timeline-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step" data-aos="fade-left" data-aos-delay="200">
+                        <div class="timeline-number">02</div>
+                        <div class="timeline-content">
+                            <div class="timeline-phase">Team </div>
+                            <h3 class="timeline-title">Form </h3>
+                            <p class="timeline-date">2026-2026</p>
+                            <p class="timeline-description">
+                                🔹 Team setup begins once registration is complete<br>
+                                🔹 Each team should have 3 to 5 members<br>
+                                🔹 All participants must be individually registered<br>
+                                🔹 Only registered teams can advance 
+                            </p>
+                            <div class="timeline-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step" data-aos="fade-right" data-aos-delay="300">
+                        <div class="timeline-number">03</div>
+                        <div class="timeline-content">
+                            <div class="timeline-phase">Idea </div>
+                            <h3 class="timeline-title">Submit </h3>
+                            <p class="timeline-date">2025-2025</p>
+                            <p class="timeline-description">
+                                Submit your proposal using the official submission format (Max 7 slides)<br>
+                                <strong>Include:</strong> Problem Overview, Team Information, Proposed Solution, Technical Plan, Feasibility & Benefits, Expected Impact, Future Steps & References
+                            </p>
+                            <div class="timeline-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step" data-aos="fade-left" data-aos-delay="400">
+                        <div class="timeline-number">04</div>
+                        <div class="timeline-content">
+                            <div class="timeline-phase">Top </div>
+                            <h3 class="timeline-title">Finale</h3>
+                            <p class="timeline-date">2026-2026</p>
+                            <p class="timeline-description">
+                                ✔ Selected participants will join the final showcase<br>
+                                ✔ Waitlisted candidates may be invited if slots open up<br>
+                                ✔ Access Fee: ₹600 per team (includes refreshments and resources)<br>
+                                ✔ All important notifications shared via email
+                            </p>
+                            <div class="timeline-icon">
+                                <i class="fas fa-list-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step" data-aos="fade-right" data-aos-delay="500">
+                        <div class="timeline-number">05</div>
+                        <div class="timeline-content">
+                            <div class="timeline-phase">Grand </div>
+                            <h3 class="timeline-title">Offline </h3>
+                            <p class="timeline-date">2026</p>
+                            <p class="timeline-description">
+                                📍 Location: Central Hall<br>
+                                🍱 Refreshments Provided: Snacks, Lunch<br>
+                                📶 Reliable WiFi & Power Supply Throughout<br>
+                                🛏️ Comfortable Rest Areas & Assistance Team<br>
+                                🏆 Pool
+                            </p>
+                            <div class="timeline-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Prizes Section -->
+    <section id="prizes" class="prizes-section">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-badge">
+                    <i class="fas fa-trophy"></i>
+                    <span>Pool</span>
+                </div>
+                <h2 class="section-title">
+                    Win <span class="highlight-text">Amazing</span> piss
+                </h2>
+                <p class="section-subtitle">
+                    Certificates
+                </p>
+            </div>
+            
+            <!-- Main Prizes (Top 3) -->
+            <div class="main-prizes">
+                <div class="prize-card winner" data-aos="fade-up" data-aos-delay="100">
+                    <div class="prize-crown">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="prize-rank">🥇 Champions</div>
+                    <div class="prize-amount">₹1,000</div>
+                    <div class="prize-title">Winner</div>
+                    <div class="prize-description">Most innovative and impactful automation solution</div>
+                    <div class="prize-glow"></div>
+                </div>
+                
+                <div class="prize-card runner-up" data-aos="fade-up" data-aos-delay="200">
+                    <div class="prize-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="prize-rank">🥈 Runners Up</div>
+                    <div class="prize-amount">₹50,000</div>
+                    <div class="prize-title">Place</div>
+                    <div class="prize-description">Outstanding automation solution</div>
+                </div>
+                
+                <div class="prize-card third" data-aos="fade-up" data-aos-delay="300">
+                    <div class="prize-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="prize-rank">🥉 Innovators</div>
+                    <div class="prize-amount">₹25,000</div>
+                    <div class="prize-title">'26 Hackathon 3rd Place</div>
+                    <div class="prize-description">Excellent technical implementation</div>
+                </div>
+            </div>
+            
+           
+        </div>
+    </section>
+    
+    <!-- FAQs Section -->
+    <section id="faqs" class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-space font-bold text-white mb-6">
+                    Frequently Asked <span class="text-cyan-custom">Questions</span>
+                </h2>
+            </div>
+            
+            <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="faq-item glassmorphic rounded-lg">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                        <span class="font-space font-medium">Who can participate in Hackathon 26?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-4 hidden">
+                        <p class="text-gray-300">Engineering (all branches), MCA/BCA/B.Sc IT, Diploma (Technical), and MBA/BBA Tech-Oriented students. Age 16-65 years. Beginners welcome if you have an idea!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item glassmorphic rounded-lg">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                        <span class="font-space font-medium">What is the team size requirement?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-4 hidden">
+                        <p class="text-gray-300">Teams must have minimum 3 members and maximum 5 members per team. All members must be registered on Hack2Skill.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item glassmorphic rounded-lg">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                        <span class="font-space font-medium">What technologies can we use?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-4 hidden">
+                        <p class="text-gray-300">You can use any technology stack, programming language, framework, or tools. The choice is completely yours! Focus on solving the automation & optimization challenge.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item glassmorphic rounded-lg">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                        <span class="font-space font-medium">When is the registration deadline and how much does it cost?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-4 hidden">
+                        <p class="text-gray-300">Individual registration is FREE and starts from 11 Dec 2025. Idea submission deadline is 31 Dec 2025. Top 50 teams selected for finale will pay ₹600 per team (includes all meals & facilities).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item glassmorphic rounded-lg">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                        <span class="font-space font-medium">What should our automation project focus on?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-4 hidden">
+                        <p class="text-gray-300">Build solutions that automate repetitive tasks, optimize workflows, or improve efficiency. Examples: automated attendance systems, smart scheduling tools, process optimization dashboards, intelligent resource management, campus automation systems, or any AI/ML/IoT-based automation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item glassmorphic rounded-lg">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none">
+                        <span class="font-space font-medium">Will mentors and support be available during the hackathon?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-4 hidden">
+                        <p class="text-gray-300">Yes! Industry experts, senior students, and faculty will be available throughout the 12-hour event to guide and mentor participants. High-speed WiFi, power backup, food, and resting zones are provided.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sponsors Section -->
+    <section class="py-20 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-space font-bold text-white mb-6">
+                    Our <span class="text-cyan-custom">Partners</span>
+                </h2>
+                <p class="text-lg text-gray-300">
+                    Proud to partner with leading organizations
+                </p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center items-center gap-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="glassmorphic rounded-lg p-8 text-center shadow-glow">
+                    <div class="mb-4 flex justify-center items-center">
+                        <img src="" 
+                             alt="TEMPLATE" 
+                             class="h-16 md:h-20 w-auto object-contain">
+                    </div>
+                    <h3 class="font-space font-bold text-xl text-white mb-2">Skill</h3>
+                    <p class="text-sm text-cyan-custom font-semibold">Platform Partner</p>
+                </div>
+                
+                <div class="glassmorphic rounded-lg p-8 text-center border-2 border-dashed border-gray-600">
+                    <div class="text-4xl text-gray-400 mb-4">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <h3 class="font-space font-semibold text-gray-300 mb-2">More Sponsors Coming Soon</h3>
+                    <p class="text-sm text-gray-500">Interested in partnering?</p>
+                    <a href="mailto:hackathon@prpotepatilengg.ac.in" class="inline-block mt-3 text-cyan-custom hover:text-cyan-300 transition-colors">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Community Section
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-space font-bold text-white mb-6">
+                    Join Our <span class="text-cyan-custom">Community</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-8">
+                    Connect with fellow participants, share ideas, and form teams before the event.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <a href="#" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all font-space font-medium">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Join WhatsApp Group
+                    </a>
+                    <a href="#" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all font-space font-medium">
+                        <i class="fab fa-discord mr-2"></i>
+                        Join Discord Server
+                    </a>
+                </div>
+            </div>
+            
+            
+        </div>
+    </section> -->
+    
+    <!-- Enhanced Footer -->
+    <footer class="comprehensive-footer">
+        <!-- Main Footer Content -->
+        <div class="footer-main">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Brand Section -->
+                    <div class="footer-brand">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <img src="" alt="" class="h-12 w-12 rounded-lg">
+                            <div>
+                                <div class="text-2xl font-space font-bold gradient-text-animated">TEMPLATE--GENERAL</div>
+                                <div class="text-sm text-cyan-custom font-medium">T--G</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 leading-relaxed mb-6">
+                            The Ultimate National-Level 12 hours of intense coding to create automation solutions that make systems smarter and life easier.
+                        </p>
+                        <div class="footer-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">₹1,75,000</span>
+                                <span class="stat-label">Prize Pool</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">Hours</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">3-5</span>
+                                <span class="stat-label">Team Size</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h3 class="footer-title">Quick Links</h3>
+                        <div class="footer-links">
+                            <a href="#hero" class="footer-link">Home</a>
+                            <a href="#about" class="footer-link">About</a>
+                            <a href="#timeline" class="footer-link">Timeline</a>
+                            <a href="#prizes" class="footer-link">Prizes</a>
+                            <a href="#faqs" class="footer-link">FAQs</a>
+                            <a href="" class="footer-link">Register</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Resources -->
+                    <div class="footer-section">
+                        <h3 class="footer-title">Resources</h3>
+                        <div class="footer-links">
+                            <a href="#" onclick="alert('Will be updated soon!'); return false;" class="footer-link">Event Guidelines</a>
+                            <a href="#" onclick="alert('Will be updated soon!'); return false;" class="footer-link">Judging Criteria</a>
+                            <a href="#" onclick="alert('Will be updated soon!'); return false;" class="footer-link">Code of Conduct</a>
+                            <a href="#" onclick="alert('Will be updated soon!'); return false;" class="footer-link">Mentorship</a>
+                            <a href="#" onclick="alert('Will be updated soon!'); return false;" class="footer-link">Workshops</a>
+                            <a href="#" onclick="alert('Will be updated soon!'); return false;" class="footer-link">API Documentation</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact & Community -->
+                    <div class="footer-section">
+                        <h3 class="footer-title">Contact & Venue</h3>
+                        <div class="footer-links mb-6">
+                            <a href="#" class="footer-link">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                Hall
+                            </a>
+                            <a href="" class="footer-link">
+                                <i class="fas fa-phone mr-2"></i>
+                                Himanshu Khobaragade:- 9420619311
+                            </a>
+                            <a href="" class="footer-link">
+                                <i class="fas fa-phone mr-2"></i>
+                                Himanshu Khobaragade:- 9420619311
+                            </a>
+                            <a href="https://mail.google.com/mail/u/0/#inbox" class="footer-link">
+                                <i class="fas fa-envelope mr-2"></i>
+                                himanshukhobragade2005@gmail.com
+                            </a>
+                        </div>
+                        
+                        <!-- Social Links -->
+                        <div class="social-links">
+                            <a href="https://github.com/Himanshu-1950" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/himanshu-khobragade-2161a2291/" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="" target="_blank" class="social-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Partner Section -->
+        <div class="footer-partners">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-lg font-space font-semibold text-gray-300 mb-4">Platform Partner</h3>
+                    <div class="flex justify-center items-center">
+                        <div class="partner-logo">
+                            <img src="" 
+                                 alt="TEMPLATE 
+                                 class="h-12 md:h-16 w-auto object-contain hover:scale-105 transition-transform duration-300">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-400 text-sm font-space mb-4 md:mb-0">
+                        © 2025 , All rights reserved.
+                    </div>
+                    <div class="flex space-x-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-cyan-custom transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-custom transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-custom transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Glow Effect -->
+        <div class="footer-glow"></div>
+    </footer>
+    
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    
+    <script>
+        // Performance optimization - defer heavy scripts on mobile
+        const isMobile = window.innerWidth <= 768;
+        
+        // Initialize particles only on desktop for better performance
+        if (!isMobile) {
+            // Initialize Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#00d4ff'
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#00d4ff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'repulse'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 400,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+        } // End of desktop-only particles
+        
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+        
+        // Load saved theme or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+        
+        function updateThemeIcon(theme) {
+            const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+            if (theme === 'light') {
+                themeIcon.className = 'fas fa-moon';
+                if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-moon';
+            } else {
+                themeIcon.className = 'fas fa-sun';
+                if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-sun';
+            }
+        }
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                htmlElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+        }
+
+        // Enhanced Navbar scroll effect with active link highlighting
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.navbar');
+        const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+        const sections = document.querySelectorAll('section[id]');
+        
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Update active navigation links
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+            
+            lastScrollTop = scrollTop;
+        }
+        
+        // Throttled scroll event
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Number animation function
+        function animateNumber(element, target, duration = 2000, prefix = '', suffix = '') {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = prefix + Math.floor(current).toLocaleString() + suffix;
+            }, 16);
+        }
+
+        // Animate numbers when they come into view
+        const observerOptions = {
+            threshold: 0.5,
+            triggerOnce: true
+        };
+
+        const numberObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const text = element.textContent;
+                    
+                    // Hero stats animations
+                    if (text.includes('₹1,75,000')) {
+                        animateNumber(element, 175000, 2500, '₹', '');
+                    } else if (text.includes('12')) {
+                        animateNumber(element, 12, 1200, '', '');
+                    } else if (text.includes('3-5')) {
+                        // Don't animate team size range
+                    } 
+                    // Prize amounts animations
+                    else if (text.includes('₹1,00,000')) {
+                        animateNumber(element, 100000, 3000, '₹', '');
+                    } else if (text.includes('₹50,000')) {
+                        animateNumber(element, 50000, 2500, '₹', '');
+                    } else if (text.includes('₹15,000')) {
+                        animateNumber(element, 15000, 1800, '₹', '');
+                    }
+                    
+                    numberObserver.unobserve(element);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all stat numbers
+        document.addEventListener('DOMContentLoaded', () => {
+            const statNumbers = document.querySelectorAll('.stat-number, .prize-amount');
+            statNumbers.forEach(number => numberObserver.observe(number));
+        });
+
+        // ========== MOBILE MENU - REBUILT FROM SCRATCH ==========
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-nav-link');
+        const body = document.body;
+        
+        console.log('Mobile menu elements:', { mobileMenuBtn, mobileMenu, mobileMenuBackdrop });
+        
+        if (mobileMenuBtn && mobileMenu && mobileMenuBackdrop) {
+            // Toggle menu on button click
+            mobileMenuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                console.log('Mobile menu button clicked');
+                const isActive = mobileMenu.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
+                mobileMenuBackdrop.classList.toggle('active');
+                console.log('Menu is now:', isActive ? 'OPEN' : 'CLOSED');
+                
+                // Lock/unlock body scroll
+                if (isActive) {
+                    body.classList.add('no-scroll');
+                } else {
+                    body.classList.remove('no-scroll');
+                }
+            });
+
+            // Close mobile menu when clicking on nav links
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // Don't close if clicking the theme toggle
+                    if (!link.classList.contains('theme-toggle-mobile')) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        mobileMenuBackdrop.classList.remove('active');
+                        body.classList.remove('no-scroll');
+                    }
+                });
+            });
+
+            // Close mobile menu when clicking backdrop
+            mobileMenuBackdrop.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                mobileMenuBackdrop.classList.remove('active');
+                body.classList.remove('no-scroll');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                        mobileMenuBackdrop.classList.remove('active');
+                        body.classList.remove('no-scroll');
+                    }
+                }
+            });
+        }
+        // ========== END MOBILE MENU ==========
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const button = item.querySelector('button');
+            const content = item.querySelector('.faq-content');
+            const icon = item.querySelector('i');
+            
+            button.addEventListener('click', () => {
+                // Close all other FAQs
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.querySelector('.faq-content').classList.add('hidden');
+                        otherItem.querySelector('i').classList.remove('rotate-180');
+                    }
+                });
+                
+                // Toggle current FAQ
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your interest! We\'ll get back to you soon.');
+                form.reset();
+            });
+        }
+        
+        // Sticky Register Button for Mobile
+        const stickyBtn = document.getElementById('stickyRegisterBtn');
+        if (stickyBtn) {
+            window.addEventListener('scroll', () => {
+                const heroSection = document.getElementById('hero');
+                const heroHeight = heroSection ? heroSection.offsetHeight : 800;
+                
+                if (window.scrollY > heroHeight * 0.8) {
+                    stickyBtn.classList.add('show');
+                } else {
+                    stickyBtn.classList.remove('show');
+                }
+            });
+        }
+        
+        // Performance: Reduce animations on mobile for better performance
+        if (window.innerWidth <= 768) {
+            // Disable heavy particle animations on mobile
+            const particles = document.getElementById('particles-js');
+            if (particles) {
+                particles.style.display = 'none';
+            }
+            
+            // Reduce animation intensity
+            document.documentElement.style.setProperty('--animation-duration', '0.3s');
+        }
+        
+        // Lazy load optimization for images
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[data-src]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+            });
+        }
+        
+        // Problem Statement Modal Logic
+        const problemStatements = {
+            1: {
+                title: "🎮 Gamified OBE Learning System",
+                icon: "🎮",
+                problem: "Many students struggle to understand Outcome-Based Education (OBE), especially how Course Outcomes (COs) and Program Outcomes (POs) are linked with syllabus content. The goal is to build a lightweight and fun system that teaches OBE concepts through games, quizzes, and drag-and-drop interactions!",
+                requirements: [
+                    "Faculty should be able to add Course content and automatically see CO-PO mappings",
+                    "Students should learn OBE basics in a simple, interactive, and engaging way — not boring theory!",
+                    "Include gamification elements like points, badges, and progress tracking",
+                    "Provide interactive quizzes and drag-and-drop activities to teach concepts",
+                    "Make it lightweight, mobile-friendly, and easy to use"
+                ],
+                techSuggestions: "Web/Mobile App, Gamification frameworks, Interactive UI libraries, Database for content management"
+            },
+            2: {
+                title: "📝 Smart Question Paper Generator",
+                icon: "📝⚙️",
+                problem: "Question paper creation is still manual in many institutes, making it slow and prone to mistakes. Build a system that auto-generates balanced and structured exam papers based on inputs like syllabus, difficulty distribution, marks, and number of questions.",
+                requirements: [
+                    "Auto-generate exam papers based on syllabus, difficulty levels, marks distribution",
+                    "Avoid question repetition across multiple paper sets",
+                    "Allow generation of multiple question paper sets for the same exam",
+                    "Export papers in printable PDF/Word format with proper formatting",
+                    "Fast, fair, and stress-free exam preparation for faculty!",
+                    "Include question bank management and categorization by topics"
+                ],
+                techSuggestions: "AI/ML for question selection, NLP for content analysis, PDF generation libraries, Web application framework"
+            }
+        };
+        
+        function showProblemDetails(id) {
+            const modal = document.getElementById('psModal');
+            const ps = problemStatements[id];
+            
+            if (ps) {
+                document.getElementById('psTitle').innerHTML = ps.icon + ' ' + ps.title;
+                document.getElementById('psProblem').textContent = ps.problem;
+                
+                const reqList = document.getElementById('psRequirements');
+                reqList.innerHTML = '';
+                ps.requirements.forEach(req => {
+                    const li = document.createElement('li');
+                    li.textContent = req;
+                    reqList.appendChild(li);
+                });
+                
+                document.getElementById('psTech').textContent = ps.techSuggestions;
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeProblemModal() {
+            const modal = document.getElementById('psModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal on backdrop click
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('psModal');
+            if (e.target === modal) {
+                closeProblemModal();
+            }
+        });
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProblemModal();
+            }
+        });
+    </script>
+    
+    <!-- Problem Statement Modal -->
+    <div id="psModal" class="ps-modal">
+        <div class="ps-modal-content">
+            <button class="ps-modal-close" onclick="closeProblemModal()">&times;</button>
+            <h2 id="psTitle" class="ps-modal-title"></h2>
+            
+            <div class="ps-modal-section">
+                <h4>📋 Problem Description</h4>
+                <p id="psProblem"></p>
+            </div>
+            
+            <div class="ps-modal-section">
+                <h4>✅ Requirements & Features</h4>
+                <ul id="psRequirements"></ul>
+            </div>
+            
+            <div class="ps-modal-section">
+                <h4>💡 Tech Stack Suggestions</h4>
+                <p id="psTech"></p>
+            </div>
+            
+            <div class="ps-modal-section">
+                <a href="" class="cta-primary" style="display: inline-block; text-decoration: none;">
+                    Register Now to Participate
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sticky Register Button for Mobile -->
+    <a href="" class="sticky-register-btn" id="stickyRegisterBtn">
+        <span>Register Now</span>
+        <i class="fas fa-rocket"></i>
+    </a>
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "19d461bdb74f40baa9c2443e40be2958"}'></script><!-- Cloudflare Pages Analytics --></body>
+</html>
