@@ -26,22 +26,16 @@ Visit the deployed site here:
 
 ## 🖼️ Screenshots
 
-### Homepage Preview
 <img width="1899" height="903" alt="Screenshot 2025-12-31 200419" src="https://github.com/user-attachments/assets/3c64358a-362d-4d98-9c28-ab57cd560152" />
 
-### Section 2
 <img width="1894" height="905" alt="Screenshot 2025-12-31 200506" src="https://github.com/user-attachments/assets/6528f1d5-52ca-447a-8b8c-dd0a10004c12" />
 
-### Section 3
 <img width="1892" height="903" alt="Screenshot 2025-12-31 200603" src="https://github.com/user-attachments/assets/5a5aac58-e1f3-44e9-80ab-720a96d9198f" />
 
-### Section 4
 <img width="1884" height="891" alt="Screenshot 2025-12-31 200637" src="https://github.com/user-attachments/assets/c65cb48e-0fac-4cea-9952-65bd264d95e5" />
 
-### Section 5
 <img width="1886" height="910" alt="Screenshot 2025-12-31 200718" src="https://github.com/user-attachments/assets/3c31525c-15ce-4065-8459-0e42ba8c46d8" />
 
-### Section 6
 <img width="1894" height="906" alt="Screenshot 2025-12-31 200809" src="https://github.com/user-attachments/assets/7aa19cda-f6cb-418a-a0d8-b736e82f7f51" />
 
 <img width="1894" height="900" alt="Screenshot 2025-12-31 200841" src="https://github.com/user-attachments/assets/997470ee-17a0-4d22-b60e-b90982f68e59" />
